@@ -1,8 +1,6 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { promisify } = require("util");
-const { findById, findByIdAndUpdate } = require("../models/instagram-posts.model");
 
 exports.signup = async (userData) => {
     const { firstName, lastName, username, email, password, passwordConfirm } = userData;
@@ -12,7 +10,7 @@ exports.signup = async (userData) => {
     if (existingUser) {
         throw new Error("Email is already in use.");
     }
-
+    
     // Create a new user
     const newUser = await User.create({
         firstName,
@@ -43,7 +41,6 @@ exports.login = async (email, password) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
-
 
     console.log('login successfully!')
     return token;

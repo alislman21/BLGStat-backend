@@ -4,7 +4,6 @@ const TwitterInfo = require("../models/twitter.model");
 const fs = require("fs");
 const https = require("https");
 const path = require("path");
-const { text } = require('stream/consumers');
 require('dotenv').config();
 
 
@@ -163,7 +162,7 @@ exports.tweets = async (user) => {
             });
 
             // for (let i = 0; i < tweetsInfo.data.length; i++) {
-            //     console.log(tweetsInfo.data[i]); // Logs each tweet object
+            //     console.log(tweetsInfo.data[i]); 
             // }
 
             // Save tweets to the database

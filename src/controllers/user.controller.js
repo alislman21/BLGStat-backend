@@ -16,14 +16,6 @@ exports.login = async (req, res, next) => {
     try {
         const {email, password} = req.body;
         const token = await userService.login(email, password);
-        // Set token in a cookie
-        // const cookieOptions = {
-        //     httpOnly: true, // Prevent client-side scripts from accessing the cookie
-        //     secure: process.env.NODE_ENV === "production", // Use HTTPS in production
-        //     maxAge: 24 * 60 * 60 * 1000, // Convert days to milliseconds
-        // };
-        //
-        // res.cookie("jwt", token, cookieOptions);
         res.status(200).json({
             status: "success",
             token,

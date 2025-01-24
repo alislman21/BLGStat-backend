@@ -1,9 +1,5 @@
-const InstagramPost = require('../models/instagram-posts.model');
 const InstagramModel = require('../models/instagram.model');
-const TwitterTweet = require('../models/twitter-tweets.model');
 const TwitterModel = require('../models/twitter.model');
-const ReportModel = require('../models/report.model');
-const {now} = require('mongoose');
 const reportService = require("../services/report.service");
 const { downloadFileAndReturnName } = require('./general.service');
 const path = require('path');
@@ -114,7 +110,7 @@ exports.getDashboard = async (user) => {
             const destDir = path.join('src', 'public', 'profile_pics');
 
             // Download the file and get its name
-            // await downloadFileAndReturnName(`${lastTweet.platformAccountId}-${lastTweet.tweetId}.jpg`, lastTweet.thumbnail, destDir);
+            await downloadFileAndReturnName(`${lastTweet.platformAccountId}-${lastTweet.tweetId}.jpg`, lastTweet.thumbnail, destDir);
 
             if (tweets.length > 1) {
                 const previousTweet = tweets[1];
@@ -147,14 +143,6 @@ exports.getDashboard = async (user) => {
                 }
             }
         }
-        // console.log(
-        //     'latestInstagramInfo', latestInstagramInfo,
-        //     'latestTwitterInfo', latestTwitterInfo,
-        //     'instagramStatistics', instagramStatistics,
-        //     'twitterStatistics', twitterStatistics,
-        //     lastPost, lastTweet
-        // );
-
         return {
             latestInstagramInfo: latestInstagramInfo,
             latestTwitterInfo: latestTwitterInfo,
